@@ -10,8 +10,10 @@ router.get('/projects', async (req, res) => {
     
     try {
         const projects = await Projects.getProjects()
-        
-        res.json(projects)
+        const newProjects = projects.map(p => {
+            return {id: p.id, project_name: p.project_name, project_description: p.project_description, completed: 'false'}
+        })
+        res.json(newProjects)
     } catch (error) {
         res.status(500).json({ message: 'Failed to get list of projects.'})
     }
@@ -39,9 +41,7 @@ router.post('/projects', async ( req,res ) => {
     const body = req.body
 
     console.log(body.completed)
-    if (body.completed === undefined) {
-        return body.completed === 'false'
-    }
+    
     try {
         const project = await Projects.addProject(body)
         res.status(201).json(project)
