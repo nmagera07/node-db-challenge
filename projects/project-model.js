@@ -29,9 +29,9 @@ function addResource(resource) {
 function addTask(task) {
     return db('tasks')
         .insert(task)
-        .innerJoin('project_tasks_resources', 'tasks.id', 'project_tasks_resources.tasks_id')
-        .innerJoin('projects', 'project_tasks_resources.project_id', 'projects.id')
-        .select('project_tasks_resources.project_id','projects.project_name', 'projects.project_description', 'tasks.task_description', 'tasks.completed')
+        // .innerJoin('project_tasks_resources', 'tasks.id', 'project_tasks_resources.tasks_id')
+        // .innerJoin('projects', 'project_tasks_resources.project_id', 'projects.id')
+        // .select('project_tasks_resources.project_id','projects.project_name', 'projects.project_description', 'tasks.task_description', 'tasks.completed')
         
         
 }
