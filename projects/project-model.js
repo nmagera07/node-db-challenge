@@ -27,7 +27,11 @@ function addResource(resource) {
 
 function addTask(task) {
     return db('tasks')
+        .innerJoin('project_tasks_resources', 'tasks.id', 'project_tasks_resources.tasks_id')
+        .innerJoin('projects', 'project_tasks_resources.project_id', 'projects.id')
+        .select('projects.id', 'projects.project_name', 'tasks.task_description', 'tasks.completed')
         .insert(task)
+        
 }
 
 module.exports = {
