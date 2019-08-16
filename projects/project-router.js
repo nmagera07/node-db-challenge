@@ -13,6 +13,8 @@ router.get('/projects', async (req, res) => {
         const newProjects = projects.map(p => {
             return {id: p.id, project_name: p.project_name, project_description: p.project_description, completed: 'false'}
         })
+        
+
         res.json(newProjects)
     } catch (error) {
         res.status(500).json({ message: 'Failed to get list of projects.'})
