@@ -12,7 +12,7 @@ function getTasks() {
     return db('tasks')
         .innerJoin('project_tasks_resources', 'tasks.id', 'project_tasks_resources.tasks_id')
         .innerJoin('projects', 'project_tasks_resources.project_id', 'projects.id')
-        .select('projects.name', 'projects.project_description', 'tasks.task_description', 'tasks.completed')
+        .select('projects.project_name', 'projects.project_description', 'tasks.task_description', 'tasks.completed')
 }
 
 function addProject(project) {

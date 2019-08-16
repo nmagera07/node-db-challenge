@@ -5,8 +5,10 @@ const Projects = require('./project-model')
 const router = express.Router()
 
 router.get('/projects', async (req, res) => {
+    
     try {
         const projects = await Projects.getProjects()
+        // const newProjects = projects.completed == false
         res.json(projects)
     } catch (error) {
         res.status(500).json({ message: 'Failed to get list of projects.'})
@@ -55,7 +57,7 @@ router.post('/resources', async ( req,res ) => {
 
 router.post('/projects/tasks', async ( req,res ) => {
     const body = req.body
-
+    
     try {
         const task = await Projects.addTask(body)
         res.status(201).json(task)
